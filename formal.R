@@ -283,30 +283,3 @@ tibble(cover1, cover2, cover3,
 
 ggsave('fig4.pdf', width = 13.5, height = 3)
 
-
-## contrast of effects
-tibble(`thinkCausal - bartCause` = cover1, 
-       `thinkCausal - CYOA` = cover2, 
-       `bartCause - CYOA` = cover3) |>
-  pivot_longer(1:3) |>
-  rename(cover = value) |>
-  mutate(name = factor(name, 
-                       levels = c('thinkCausal - bartCause', 
-                                  'thinkCausal - CYOA', 
-                                  'bartCause - CYOA'
-                       ))) |>
-  ggplot(aes(name, value)) + 
-  geom_boxplot() + 
-  theme_classic() + 
-  geom_hline(yintercept = 0, linetype = 2) + 
-  labs(x = 'Contrast', y = 'CATE')
-
-ggsave('fig4.pdf', width = 15, height = 3)
-
-
-
-
-
-
-
-
